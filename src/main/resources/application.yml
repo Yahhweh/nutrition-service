@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: nutrition-service
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5488}/${DB_NAME:nutrition}
+    username: ${DB_USER:user}
+    password: ${DB_PASSWORD:22305}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: ${SERVER_PORT:8081}
