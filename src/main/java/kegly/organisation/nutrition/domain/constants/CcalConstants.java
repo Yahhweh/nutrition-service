@@ -1,4 +1,4 @@
-package kegly.organisation.nutrition.constants;
+package kegly.organisation.nutrition.domain.constants;
 
 import lombok.experimental.UtilityClass;
 

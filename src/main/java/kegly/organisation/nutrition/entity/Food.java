@@ -1,11 +1,11 @@
 package kegly.organisation.nutrition.entity;
 
 import jakarta.persistence.*;
-import kegly.organisation.nutrition.constants.Default;
+import kegly.organisation.nutrition.annotation.Default;
 import lombok.Getter;
 import lombok.Setter;
 
-import static kegly.organisation.nutrition.constants.CcalConstants.*;
+import static kegly.organisation.nutrition.domain.constants.CcalConstants.*;
 
 @Entity
 @Table(name = "food")

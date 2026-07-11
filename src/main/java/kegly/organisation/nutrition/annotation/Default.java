@@ -1,4 +1,4 @@
-package kegly.organisation.nutrition.constants;
+package kegly.organisation.nutrition.annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

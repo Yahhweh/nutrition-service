@@ -23,7 +23,20 @@ public class User {
 
     private Double weight;
 
+    @Column(nullable = false)
+    private Integer height;
+
+    @Enumerated(EnumType.STRING)
+    private Sex sex;
+
+    private Integer age;
+
+    @Enumerated(EnumType.STRING)
+    private Activity activity;
+
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "target_id")
     private Target target;
+
+
 }

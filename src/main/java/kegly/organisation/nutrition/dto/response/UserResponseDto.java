@@ -13,5 +13,6 @@ public class UserResponseDto {
     private Long telegramId;
     private String username;
     private Double weight;
+    private Integer height;
     private Long targetId;
 }

@@ -23,4 +23,8 @@ public class UserRequestDto {
     @NotNull
     @Positive
     private Double weight;
+
+    @NotNull
+    @Positive
+    private Integer height;
 }

@@ -104,7 +104,7 @@ class UserServiceTest {
     }
 
     private UserRequestDto buildDto() {
-        return new UserRequestDto(100L, "testUser", 70.0);
+        return new UserRequestDto(100L, "testUser", 70.0, 175);
     }
 
     private User buildUser() {
@@ -113,6 +113,7 @@ class UserServiceTest {
         user.setTelegramId(100L);
         user.setUsername("testUser");
         user.setWeight(70.0);
+        user.setHeight(175);
         return user;
     }
 }

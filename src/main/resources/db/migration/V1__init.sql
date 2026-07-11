@@ -12,6 +12,10 @@ CREATE TABLE users (
     telegram_id BIGINT       NOT NULL UNIQUE,
     username    VARCHAR(255),
     weight      DOUBLE PRECISION,
+    height      INTEGER NOT NULL ,
+    sex VARCHAR(32) NOT NULL,
+    age INTEGER NOT NULL ,
+    activity VARCHAR(32) NOT NULL ,
     target_id   BIGINT REFERENCES targets (id)
 );
 
