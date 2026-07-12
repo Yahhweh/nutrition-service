@@ -18,13 +18,13 @@ public class Target {
     private Long id;
 
     @Column(nullable = false)
-    private Double protein;
+    private Integer protein;
 
     @Column(nullable = false)
-    private Double fat;
+    private Integer fat;
 
     @Column(nullable = false)
-    private Double carbohydrates;
+    private Integer carbohydrates;
 
     @Column(nullable = false)
     private Integer ccal;
@@ -32,4 +32,15 @@ public class Target {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 32)
     private GoalType type;
+
+    public static Target of(GoalType type, int ccal, int protein, int fat) {
+        int carbs = (ccal - protein * 4 - fat * 9) / 4;
+        Target t = new Target();
+        t.type = type;
+        t.ccal = ccal;
+        t.protein = protein;
+        t.fat = fat;
+        t.carbohydrates = carbs;
+        return t;
+    }
 }

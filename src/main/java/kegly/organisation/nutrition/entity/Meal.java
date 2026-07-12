@@ -29,6 +29,7 @@ public class Meal {
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
+    private Integer grams;
     @PrePersist
     void onCreate() {
         if (createdAt == null) {

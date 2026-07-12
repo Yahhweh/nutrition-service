@@ -23,7 +23,7 @@ public class MealService {
     private final FoodRepository foodRepository;
 
     @Transactional
-    public Meal create(MealRequestDto dto) {
+    public Meal add(MealRequestDto dto) {
         User user = userRepository.findById(dto.getUserId())
                 .orElseThrow(() -> new EntityNotFoundException("User not found: id=" + dto.getUserId()));
         Food food = foodRepository.findById(dto.getFoodId())

@@ -3,7 +3,9 @@ package kegly.organisation.nutrition.service;
 import jakarta.persistence.EntityNotFoundException;
 import kegly.organisation.nutrition.domain.NutritionCalculator;
 import kegly.organisation.nutrition.dto.request.TargetRequestDto;
+import kegly.organisation.nutrition.dto.update.TargetUpdateDto;
 import kegly.organisation.nutrition.entity.Target;
+import kegly.organisation.nutrition.mapper.TargetMapper;
 import kegly.organisation.nutrition.repository.TargetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,12 +17,17 @@ public class TargetService {
 
     private final TargetRepository targetRepository;
     private final NutritionCalculator nutritionCalculator;
+    private final TargetMapper targetMapper;
+    private final UserService userService;
 
-//    @Transactional
-//    public Target create(TargetRequestDto dto) {
-//        Target target = nutritionCalculator.calculateNutritionCalculator(dto);
-//        return targetRepository.save(target);
-//    }
+    @Transactional
+    public Target create(TargetRequestDto dto) {
+        Target target = nutritionCalculator.calculateNutritionCalculator(dto);
+        Target saved = targetRepository.save(target);
+        userService.findByTelegramId(dto.getUserId())
+                .orElseThrow(EntityNotFoundException::new);
+        return saved;
+    }
 
     @Transactional(readOnly = true)
     public Target getById(Long id) {
@@ -29,8 +36,9 @@ public class TargetService {
     }
 
     @Transactional
-    public Target update(Long id, TargetRequestDto dto) {
+    public Target update(Long id, TargetUpdateDto dto) {
         Target target = getById(id);
+        targetMapper.updateEntityFromDto(dto, target);
         return targetRepository.save(target);
     }
 

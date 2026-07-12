@@ -85,18 +85,6 @@ class UserServiceTest {
     }
 
     @Test
-    void assignTarget_whenUserExists_thenTargetIsAssigned() {
-        User user = buildUser();
-        Target target = new Target();
-        target.setId(10L);
-        when(userRepository.findById(1L)).thenReturn(Optional.of(user));
-
-        userService.assignTarget(1L, target);
-
-        assertThat(user.getTarget()).isEqualTo(target);
-    }
-
-    @Test
     void delete_whenCalled_thenRepositoryDeleteByIdIsCalled() {
         userService.delete(1L);
 

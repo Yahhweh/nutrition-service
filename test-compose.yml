@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: test-nutrition
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: 22305
+    ports:
+      - "5489:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:

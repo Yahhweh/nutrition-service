@@ -1,8 +1,8 @@
 CREATE TABLE targets (
     id            BIGSERIAL PRIMARY KEY,
-    protein       DOUBLE PRECISION NOT NULL,
-    fat           DOUBLE PRECISION NOT NULL,
-    carbohydrates DOUBLE PRECISION NOT NULL,
+    protein       INTEGER NOT NULL,
+    fat           INTEGER NOT NULL,
+    carbohydrates INTEGER NOT NULL,
     ccal          INTEGER          NOT NULL,
     type          VARCHAR(32)      NOT NULL
 );
@@ -15,8 +15,7 @@ CREATE TABLE users (
     height      INTEGER NOT NULL ,
     sex VARCHAR(32) NOT NULL,
     age INTEGER NOT NULL ,
-    activity VARCHAR(32) NOT NULL ,
-    target_id   BIGINT REFERENCES targets (id)
+    activity VARCHAR(32) NOT NULL
 );
 
 CREATE TABLE food (
@@ -30,9 +29,10 @@ CREATE TABLE food (
 
 CREATE TABLE meal(
     id BIGSERIAL PRIMARY KEY
-    ,user_id BIGSERIAL NOT NULL
-    , food_id BIGSERIAL NOT NULL
+    ,user_id BIGINT NOT NULL
+    , food_id BIGINT NOT NULL
     , created_at TIMESTAMP NOT NULL DEFAULT now()
+    , grams INTEGER NOT NULL
     , FOREIGN KEY (user_id) REFERENCES users(id)
     , FOREIGN KEY (food_id) REFERENCES food(id)
 )

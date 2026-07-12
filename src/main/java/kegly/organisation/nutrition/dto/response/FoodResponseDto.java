@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FoodResponseDto {
 
-    private Long id;
     private String name;
     private Integer protein;
     private Integer fat;

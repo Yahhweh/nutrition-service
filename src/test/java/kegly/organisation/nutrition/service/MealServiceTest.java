@@ -47,7 +47,7 @@ class MealServiceTest {
         when(foodRepository.findById(10L)).thenReturn(Optional.of(food));
         when(mealRepository.save(any(Meal.class))).thenReturn(saved);
 
-        Meal result = mealService.create(dto);
+        Meal result = mealService.add(dto);
 
         assertThat(result).isEqualTo(saved);
         verify(userRepository).findById(1L);
@@ -60,7 +60,7 @@ class MealServiceTest {
         MealRequestDto dto = buildDto();
         when(userRepository.findById(1L)).thenReturn(Optional.empty());
 
-        assertThrows(EntityNotFoundException.class, () -> mealService.create(dto));
+        assertThrows(EntityNotFoundException.class, () -> mealService.add(dto));
 
         verify(mealRepository, never()).save(any());
     }
@@ -71,7 +71,7 @@ class MealServiceTest {
         when(userRepository.findById(1L)).thenReturn(Optional.of(buildUser()));
         when(foodRepository.findById(10L)).thenReturn(Optional.empty());
 
-        assertThrows(EntityNotFoundException.class, () -> mealService.create(dto));
+        assertThrows(EntityNotFoundException.class, () -> mealService.add(dto));
 
         verify(mealRepository, never()).save(any());
     }

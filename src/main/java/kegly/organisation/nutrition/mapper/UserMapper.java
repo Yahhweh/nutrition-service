@@ -10,14 +10,11 @@ import org.mapstruct.*;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface UserMapper {
 
-    @Mapping(target = "targetId", source = "target.id")
     UserResponseDto toDto(User user);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "target", ignore = true)
     User toEntity(UserRequestDto dto);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "target", ignore = true)
     void updateEntityFromDto(UserRequestDto dto, @MappingTarget User user);
 }

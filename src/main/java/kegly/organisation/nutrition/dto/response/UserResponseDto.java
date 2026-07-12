@@ -14,5 +14,4 @@ public class UserResponseDto {
     private String username;
     private Double weight;
     private Integer height;
-    private Long targetId;
 }

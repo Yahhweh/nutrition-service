@@ -44,13 +44,6 @@ public class UserService {
     }
 
     @Transactional
-    public User assignTarget(Long id, Target target) {
-        User user = getById(id);
-        user.setTarget(target);
-        return user;
-    }
-
-    @Transactional
     public void delete(Long id) {
         userRepository.deleteById(id);
     }
