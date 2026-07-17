@@ -1,5 +1,6 @@
 package kegly.organisation.nutrition.dto.request;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,12 +9,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MealRequestDto {
 
+    @Schema(description = "ID of the user", example = "1")
     @NotNull
     private Long userId;
 
+    @Schema(description = "ID of the food item", example = "2")
     @NotNull
     private Long foodId;
 
+    @Schema(description = "Portion size in grams, must be > 0", example = "150")
     @NotNull
     private Integer grams;
 

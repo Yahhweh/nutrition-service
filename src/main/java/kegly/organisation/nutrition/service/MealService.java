@@ -5,6 +5,7 @@ import kegly.organisation.nutrition.dto.request.MealRequestDto;
 import kegly.organisation.nutrition.entity.Food;
 import kegly.organisation.nutrition.entity.Meal;
 import kegly.organisation.nutrition.entity.User;
+import kegly.organisation.nutrition.entity.valueObject.Nutrition;
 import kegly.organisation.nutrition.repository.FoodRepository;
 import kegly.organisation.nutrition.repository.MealRepository;
 import kegly.organisation.nutrition.repository.UserRepository;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MealService {
 
     private final MealRepository mealRepository;
@@ -25,13 +27,23 @@ public class MealService {
     @Transactional
     public Meal add(MealRequestDto dto) {
         User user = userRepository.findById(dto.getUserId())
-                .orElseThrow(() -> new EntityNotFoundException("User not found: id=" + dto.getUserId()));
+                .orElseThrow(() -> new EntityNotFoundException("Meal not found: id=" + dto.getUserId()));
         Food food = foodRepository.findById(dto.getFoodId())
-                .orElseThrow(() -> new EntityNotFoundException("Food not found: id=" + dto.getFoodId()));
+                .orElseThrow(() -> new EntityNotFoundException("Meal not found: id=" + dto.getFoodId()));
         Meal meal = new Meal();
         meal.setUser(user);
         meal.setFood(food);
+        meal.setGrams(dto.getGrams());
         return mealRepository.save(meal);
+    }
+
+    public Nutrition getNutritionByGrams(Long mealId){
+        Meal meal = mealRepository.findById(mealId)
+                .orElseThrow(() -> new EntityNotFoundException("Meal not foind: id=" + mealId));
+
+        Food food = meal.getFood();
+
+        return meal.getNutritionByGrams();
     }
 
     @Transactional(readOnly = true)

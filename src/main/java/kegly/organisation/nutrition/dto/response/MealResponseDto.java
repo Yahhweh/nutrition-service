@@ -15,4 +15,5 @@ public class MealResponseDto {
     private Long userId;
     private Long foodId;
     private Instant createdAt;
+    private Integer grams;
 }
